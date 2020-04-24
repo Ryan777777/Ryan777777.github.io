@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+</head>
+<body>
+<h1 id="dynamic-programming">Dynamic Programming</h1>
+@Lin Zhang
+<h3 id="what-is-dynamic-programming">What is Dynamic Programming</h3>
+<p>It is an algorithm, that will save the current unique result in order to avoid repeat calculation. In general, we save the result to a one dimensional array or two dimensional array.</p>
+<h5 id="step-1">Step 1</h5>
+<p><strong>Defines the meaning of array-elements</strong>. As we mention before, we need a one dimensional array to save the result. This is important by understanding the question and have a general about how to solve the problem.</p>
+<h5 id="step-2">Step 2</h5>
+<p><strong>Find the relationship between elements</strong>. This likes a recursive function. When we want to calculate f(n), we can use f(n-1),f(n-2),f(n-3)···.</p>
+<h5 id="step-3">Step 3</h5>
+<p><strong>Find the initial value</strong>. This is the stat value. We can consider as the end condition in recursive function. Is shows where the dynamic programming should start at.</p>
+<ol style="list-style-type: decimal">
+<li>One dimensional array</li>
+</ol>
+<p>Q1 A frog can jump 1 step or 2 step each time. How many possible ways to jump N steps? ``` step1: Defines the meaning of array-elements: In this problem, we can defines dp[n] means how many possible ways to jump. For example dp[1] = 1 means there are 1 choices to jump 1 steps. As well as dp[2] = 2</p>
+<p>stpe2 Find relationship, this is the hardest part in dynamic programming. In this example, Our goal is to find dp[n], which can jump from dp[n-1] and dp[n-2]. What is the relationship between dp[3], dp[2], dp[1]? Case 1, jump once from steps 1 to steps 3.<br />Case 2, jump once from steps 2 to steps 3. Therefore, the possible ways to jump to steps 3 is the sum of the possible ways jump to steps 2 and the possible ways jump to step 1. So we have dp[n] = dp[n-1] + dp[n-2]</p>
+<p>stpe3 Initial value: No negative jump. dp[0] = 0, dp[1] = 1, dp[2] = 2.<br /> ```</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">int</span> <span class="fu">fast</span>( <span class="dt">int</span> n ){
+     <span class="kw">if</span>(n &lt;= <span class="dv">1</span>)
+         <span class="kw">return</span> n;
+     <span class="co">// create an one dimensional array to save data. Since dp[0],</span>
+     <span class="co">// so the size will be int[n+1]</span>
+     <span class="dt">int</span>[] dp = <span class="kw">new</span> <span class="dt">int</span>[n<span class="dv">+1</span>];
+     <span class="co">// give the initial value</span>
+     dp[<span class="dv">0</span>] = <span class="dv">0</span>;
+     dp[<span class="dv">1</span>] = <span class="dv">1</span>;
+     dp[<span class="dv">2</span>] = <span class="dv">2</span>;
+     <span class="co">// relationship between elements</span>
+     <span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">3</span>; i &lt;= n; i++){
+         dp[i] = dp[i<span class="dv">-1</span>] + dp[i<span class="dv">-2</span>];
+     }
+     <span class="kw">return</span> dp[n];
+ }</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Index</th>
+<th align="left">0</th>
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+<th align="left">4</th>
+<th align="left">5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">value</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">5</td>
+<td align="left">8</td>
+</tr>
+</tbody>
+</table>
+<p>In general, this likes a recursion function. The only different is we save the intermediate results to an array to avoid repeat calculations.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Two dimensional array:</li>
+</ol>
+<p>A robot is located at the top-left corner of a m x n grid. The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (n, m less than 100).</p>
+<p>How many possible unique paths are there? <a href="https://leetcode.com/problems/unique-paths/">Source: Leecode 62</a> <img src="robot.png" alt="robot" /></p>
+<pre><code>step1:
+Defines the meaning of array-elements: In this problem, we can defines dp[i][j] means how many possible ways to position(i, j). Our goal is to find dp[i-1][j-1], since it start at dp[0][0].
+stpe2
+Find relationship, We can imaging for each position (a, b). There are two possible, one is from dp[a-1][b], and another is from dp[a][b-1]. So we need to sum them up. That is it.
+dp[i][j] = dp[i-1][j] + dp[i][j-1]
+stpe3
+Initial value: if i or j is 0. We do not need to count the relationship dp[i][j] = dp[i-1][j] + dp[i][j-1], since i-1 or j-1 will be negative.
+Therefore:
+dp[0] [0….n-1] = 1; // directly go first row
+dp[0…m-1] [0] = 1; // directly go downward</code></pre>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">uniquePaths</span>(<span class="dt">int</span> m, <span class="dt">int</span> n) {
+    <span class="kw">if</span> (m &lt;= <span class="dv">0</span> || n &lt;= <span class="dv">0</span>) {
+        <span class="kw">return</span> <span class="dv">0</span>;
+    }
+   <span class="co">//initial array</span>
+   <span class="dt">int</span>[][] dp = <span class="kw">new</span> <span class="dt">int</span>[m][n];
+   <span class="co">//initial condition</span>
+   <span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; m; i++){
+      dp[i][<span class="dv">0</span>] = <span class="dv">1</span>;
+    }
+   <span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; n; i++){
+      dp[<span class="dv">0</span>][i] = <span class="dv">1</span>;
+    }
+    <span class="co">//relationship</span>
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; m; i++) {
+        <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">1</span>; j &lt; n; j++) {
+            dp[i][j] = dp[i<span class="dv">-1</span>][j] + dp[i][j<span class="dv">-1</span>];
+        }
+    }
+    <span class="kw">return</span> dp[m<span class="dv">-1</span>][n<span class="dv">-1</span>];
+}
+
+<span class="co">// This is O(n*m), we can improve to O(min(n,m)). Not here.</span></code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Minimum Path Sum</li>
+</ol>
+<p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path. Note: You can only move either down or right at any point in time.<a href="https://leetcode.com/problems/minimum-path-sum/">Source: Leecode 64</a></p>
+<div class="figure">
+<img src="walk.png" alt="walk" /><p class="caption">walk</p>
+</div>
+<pre><code>step1:
+Defines the meaning of array-elements: In this problem, we can defines dp[i][j] means how many possible ways to position(i, j). Our goal is to find dp[i-1][j-1], since it start at dp[0][0].
+stpe2
+Find relationship, We can imaging for each position (a, b). There are two possible, one is from dp[a-1][b], and another is from dp[a][b-1]. So instead sum them up, we need to find the minimum first.
+dp[i][j] = min(dp[i-1][j]，dp[i][j-1]) + arr[i][j];//arr[i][j] means the value in the current cell.
+stpe3
+Initial value: if i or j is 0. We do not need to count the relationship dp[i][j] = min(dp[i-1][j]，dp[i][j-1]) + arr[i][j];, since i-1 or j-1 will be negative.
+Therefore:
+dp[0][j] = arr[0][j] + dp[0][j-1]; // directly go first row
+dp[i][0] = arr[i][0] + dp[i-1][0]; // directly go downward</code></pre>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">uniquePaths</span>(<span class="dt">int</span>[][] arr) {
+    <span class="dt">int</span> m = arr.<span class="fu">length</span>;
+    <span class="dt">int</span> n = arr[<span class="dv">0</span>].<span class="fu">length</span>;
+    <span class="kw">if</span> (m &lt;= <span class="dv">0</span> || n &lt;= <span class="dv">0</span>) {
+        <span class="kw">return</span> <span class="dv">0</span>;
+    }
+    <span class="dt">int</span>[][] dp = <span class="kw">new</span> <span class="dt">int</span>[m][n]; <span class="co">//</span>
+    <span class="co">// initial array</span>
+    dp[<span class="dv">0</span>][<span class="dv">0</span>] = arr[<span class="dv">0</span>][<span class="dv">0</span>];
+    <span class="co">// first row</span>
+    <span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; m; i++){
+      dp[i][<span class="dv">0</span>] = dp[i<span class="dv">-1</span>][<span class="dv">0</span>] + arr[i][<span class="dv">0</span>];
+    }
+    <span class="co">// first column</span>
+    <span class="kw">for</span>(<span class="dt">int</span> j = <span class="dv">1</span>; j &lt; n; j++){
+      dp[<span class="dv">0</span>][j] = dp[<span class="dv">0</span>][j<span class="dv">-1</span>] + arr[<span class="dv">0</span>][j];
+    }
+        <span class="co">// double for loop since it is a two dimensional matrix</span>
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; m; i++) {
+        <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">1</span>; j &lt; n; j++) {
+            dp[i][j] = Math.<span class="fu">min</span>(dp[i<span class="dv">-1</span>][j], dp[i][j<span class="dv">-1</span>]) + arr[i][j];
+        }
+    }
+    <span class="kw">return</span> dp[m<span class="dv">-1</span>][n<span class="dv">-1</span>];
+}
+<span class="co">// This is O(n*m), we can improve to O(min(n,m)). Not here.</span></code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Edit Distance</li>
+</ol>
+<p>Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2. You have the following 3 operations permitted on a word:</p>
+<p>Insert a character</p>
+<p>Delete a character</p>
+<p>Replace a character<a href="https://leetcode.com/problems/edit-distance/">Source: Leecode 72</a></p>
+<div class="figure">
+<img src="word.jpg" alt="word" /><p class="caption">word</p>
+</div>
+<p><strong>90% of string problems can be solved by dynamic programming, and 90% by two-dimensional arrays.</strong></p>
+<pre><code>step1:
+Defines the meaning of array-elements: In this problem, we can defines dp[i][j]. i is the length of word 1 and j is the length of the word 2. The minimum ways to transfer word 1 to word 2 will represent by dp[i][j].
+stpe2
+Equal char dp[i][j] = dp[i-1][j-1]
+Insert a character dp[i][j] = dp[i][j-1] + 1;
+Delete a character dp[i][j] = dp[i-1][j] + 1;
+Replace a character dp[i][j] = dp[i-1][j-1] + 1;
+There are 4 cases, see image below and we should take the minimum approach.
+Therefore:
+dp[i][j] = min(dp[i-1][j-1]，dp[i][j-1]，dp[[i-1][j]]) + 1;
+
+stpe3
+Initial value: if i or j is 0. We do not need to count the relationship.
+When one string is 0 length, the only way to transform is take remove step and the numbers
+of the minimum step is the length of the remaining string.</code></pre>
+<div class="figure">
+<img src="text.jpg" alt="word" /><p class="caption">word</p>
+</div>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">int</span> <span class="fu">minDistance</span>(String word1, String word2) {
+    <span class="dt">int</span> n1 = word1.<span class="fu">length</span>();
+    <span class="dt">int</span> n2 = word2.<span class="fu">length</span>();
+    <span class="dt">int</span>[][] dp = <span class="kw">new</span> <span class="dt">int</span>[n1 + <span class="dv">1</span>][n2 + <span class="dv">1</span>];
+    <span class="co">// Initial value dp[0][0...n2]</span>
+    <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">1</span>; j &lt;= n2; j++)
+        dp[<span class="dv">0</span>][j] = dp[<span class="dv">0</span>][j - <span class="dv">1</span>] + <span class="dv">1</span>;
+    <span class="co">// Initial value dp[0...n1][0]</span>
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt;= n1; i++) dp[i][<span class="dv">0</span>] = dp[i - <span class="dv">1</span>][<span class="dv">0</span>] + <span class="dv">1</span>;
+        <span class="co">// Calculate dp[n-1][n-2]</span>
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt;= n1; i++) {
+        <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">1</span>; j &lt;= n2; j++) {
+            <span class="kw">if</span> (word1.<span class="fu">charAt</span>(i - <span class="dv">1</span>) == word2.<span class="fu">charAt</span>(j - <span class="dv">1</span>)){
+                p[i][j] = dp[i - <span class="dv">1</span>][j - <span class="dv">1</span>];
+            }<span class="kw">else</span> {
+            dp[i][j] = Math.<span class="fu">min</span>(Math.<span class="fu">min</span>(dp[i - <span class="dv">1</span>][j - <span class="dv">1</span>], dp[i][j - <span class="dv">1</span>]), dp[i - <span class="dv">1</span>][j]) + <span class="dv">1</span>;
+            }         
+        }
+    }
+    <span class="kw">return</span> dp[n1][n2];  
+}
+<span class="co">// This is O(n*m), we can improve to O(min(n,m)). Not here.</span></code></pre>
+</body>
+</html>
