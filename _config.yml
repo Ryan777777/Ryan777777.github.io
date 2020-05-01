@@ -10,15 +10,15 @@
 ###################### START 站点全局信息#########################
 
 #博客名称
-blogName: Echo Blog
+blogName: Alphabet Blog
 # 标题
-title: Echo Blog
+title: Alphabet Blog
 # 博客名称
-blogName: Echo
+blogName: Alphabet
 # 作者
-me: HouBinbin
-# 描述
-description: "Endless Miss, Once Echo"
+me: Lin Zhang
+# # 描述
+# description: "Endless Miss, Once Echo"
 # 摘要
 excerpt_separator: "\n\n"
 # 根目录
@@ -28,7 +28,7 @@ baseurl: ""
 header-img: static/app/res/img/home-bg.jpeg
 
 # github
-github_username:  houbb
+github_username:  LIN251
 ###################### END 站点全局信息 #########################
 
 
