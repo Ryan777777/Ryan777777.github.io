@@ -24,7 +24,7 @@ tags:
 ##### Step 3  #####
 **Find the initial value**. This is the stat value. We can consider as the end condition in recursive function. Is shows where the dynamic programming should start at.
 
-##### One dimensional array#####
+##### One dimensional array #####
 
 Q1 A frog can jump 1 step or 2 step each time. How many possible ways to jump N steps?
 
@@ -71,7 +71,7 @@ Initial value: No negative jump. dp[0] = 0, dp[1] = 1, dp[2] = 2.
  In general, this likes a recursion function. The only different is we save the intermediate results to an array to avoid repeat calculations.
 
 
-##### Two dimensional array:#####
+##### Two dimensional array: #####
 
 
  A robot is located at the top-left corner of a m x n grid. The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (n, m less than 100).
@@ -120,11 +120,11 @@ Initial value: No negative jump. dp[0] = 0, dp[1] = 1, dp[2] = 2.
  ```
 >This is O(n*m), we can improve to O(min(n,m)). Not here.
 
-##### Minimum Path Sum#####
+##### Minimum Path Sum #####
 
 
  Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
- Note: You can only move either down or right at any point in time.[Source: Leecode 64](https://leetcode.com/problems/minimum-path-sum/)
+ Note: You can only move either down or right at any point in time. [Source: Leecode 64](https://leetcode.com/problems/minimum-path-sum/)
 
 
  ![](https://miro.medium.com/max/746/1*xFEcuAYzHR5J_r60z-os4A.png)
@@ -171,11 +171,11 @@ Initial value: No negative jump. dp[0] = 0, dp[1] = 1, dp[2] = 2.
      return dp[m-1][n-1];
  }
  ```
- 
+
 >This is O(n*m), we can improve to O(min(n,m)). Not here.
 
 
-##### Edit Distance#####
+##### Edit Distance #####
 
  Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2.
  You have the following 3 operations permitted on a word:
@@ -184,7 +184,7 @@ Initial value: No negative jump. dp[0] = 0, dp[1] = 1, dp[2] = 2.
 
  Delete a character
 
- Replace a character[Source: Leecode 72](https://leetcode.com/problems/edit-distance/)
+ Replace a character [Source: Leecode 72](https://leetcode.com/problems/edit-distance/)
 
 ![](https://miro.medium.com/max/608/1*3l5oNS3mEKTcEWtyX6xixw.jpeg)
 
