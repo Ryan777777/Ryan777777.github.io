@@ -4,7 +4,7 @@ title:      Dynamic Programming
 subtitle:   
 date:       2020-05-01
 author:     Linz
-header-img: img/bg18.jpg
+header-img: img/about_bg.jpeg
 catalog: true
 tags:
     - Algorithm
