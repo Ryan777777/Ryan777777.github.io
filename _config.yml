@@ -5,7 +5,6 @@ header-img: img/bg12.jpg
 email: lz2304@vt.edu
 description: "Every failure is leading towards success."
 keyword: "LinZ, LinZ Blog, 张淋的博客, LinZhang, 张淋, Java, Algorithm, Android"
-# keyword: "BY, BY Blog, 柏荧的博客, qiubaiying, 邱柏荧, iOS, Apple, iPhone"
 url: "https://ryan777777.github.io/"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/Ryan777777/Ryan777777.github.io" # you code repository
@@ -22,7 +21,7 @@ RSS: false
 # weibo_username:     qiubaiying
 # zhihu_username:     qiubaiying
 github_username:    LIN251
-facebook_username:  LIN ZHANG
+facebook_username:  people/Lin-Zhang/100014322406387
 Youtube_username:   LIN ZHANG
 twitter_username:   LIN ZHANG
 
