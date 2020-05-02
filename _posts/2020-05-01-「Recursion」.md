@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Recursion
-subtitle:   Note 1
+subtitle:   
 date:       2020-05-01
 author:     Linz
 header-img: img/bg8.jpg
