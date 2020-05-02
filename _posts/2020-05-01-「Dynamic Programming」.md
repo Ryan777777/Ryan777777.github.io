@@ -24,7 +24,7 @@ tags:
 ##### Step 3  #####
 **Find the initial value**. This is the stat value. We can consider as the end condition in recursive function. Is shows where the dynamic programming should start at.
 
-1. One dimensional array
+##### One dimensional array#####
 
 Q1 A frog can jump 1 step or 2 step each time. How many possible ways to jump N steps?
 
@@ -62,19 +62,25 @@ Initial value: No negative jump. dp[0] = 0, dp[1] = 1, dp[2] = 2.
   }
  ```
 
+
  | Index | 0 | 1 | 2 | 3 | 4 | 5 |
  |-------|---|---|---|---|---|---|
  | value | 0 | 1 | 2 | 3 | 5 | 8 |
 
+
  In general, this likes a recursion function. The only different is we save the intermediate results to an array to avoid repeat calculations.
 
- 2. Two dimensional array:
+
+##### Two dimensional array:#####
+
 
  A robot is located at the top-left corner of a m x n grid. The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (n, m less than 100).
 
    How many possible unique paths are there? [Source: Leecode 62](https://leetcode.com/problems/unique-paths/)
 
+
  ![](https://miro.medium.com/max/764/1*csZyGQGnyAsZdZhG5yEqmg.png)
+
 
  ```
  step1:
@@ -111,17 +117,18 @@ Initial value: No negative jump. dp[0] = 0, dp[1] = 1, dp[2] = 2.
      }
      return dp[m-1][n-1];
  }
-
- // This is O(n*m), we can improve to O(min(n,m)). Not here.
  ```
+>This is O(n*m), we can improve to O(min(n,m)). Not here.
 
+##### Minimum Path Sum#####
 
- 3. Minimum Path Sum
 
  Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
  Note: You can only move either down or right at any point in time.[Source: Leecode 64](https://leetcode.com/problems/minimum-path-sum/)
 
+
  ![](https://miro.medium.com/max/746/1*xFEcuAYzHR5J_r60z-os4A.png)
+
 
  ```
  step1:
@@ -135,6 +142,7 @@ Initial value: No negative jump. dp[0] = 0, dp[1] = 1, dp[2] = 2.
  dp[0][j] = arr[0][j] + dp[0][j-1]; // directly go first row
  dp[i][0] = arr[i][0] + dp[i-1][0]; // directly go downward
  ```
+
 
  ```java
  public static int uniquePaths(int[][] arr) {
@@ -162,10 +170,12 @@ Initial value: No negative jump. dp[0] = 0, dp[1] = 1, dp[2] = 2.
      }
      return dp[m-1][n-1];
  }
- // This is O(n*m), we can improve to O(min(n,m)). Not here.
  ```
+ 
+>This is O(n*m), we can improve to O(min(n,m)). Not here.
 
- 4. Edit Distance
+
+##### Edit Distance#####
 
  Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2.
  You have the following 3 operations permitted on a word:
@@ -196,7 +206,7 @@ Initial value: No negative jump. dp[0] = 0, dp[1] = 1, dp[2] = 2.
  When one string is 0 length, the only way to transform is take remove step and the numbers
  of the minimum step is the length of the remaining string.
  ```
- 
+
 ![](https://miro.medium.com/max/427/1*55vXMSE72YYkkB0MuxBKwg.jpeg)
 
 
