@@ -4,7 +4,7 @@ title:      Recursion
 subtitle:   Note 1
 date:       2020-05-01
 author:     Linz
-header-img: img/Recursion.jpg
+header-img: img/bg8.jpg
 catalog: true
 tags:
     - Algorithm
@@ -110,7 +110,8 @@ public int improve( int n){
 }
 ```
 
-Q2: If a frog can jump 1 step, 2 steps, 3 steps ····· or X step each times. How many possible ways the frog can jump X steps?
+### Q2: If a frog can jump 1 step, 2 steps, 3 steps ····· or X step each times. How many possible ways the frog can jump X steps?
+
 ```java
 Map<Integer, Integer> map = new HashMap<>();
 public int dynamic( int a ){
