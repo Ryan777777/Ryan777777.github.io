@@ -12,9 +12,9 @@ tags:
 
 ## Recursion
 
-  Key note:
-  a) Find the relationship between current function and the next function.
-  b) Find the end condition.
+**Key note:**
+- **a) Find the relationship between current function and the next function.**
+- **b) Find the end condition.**
 
 
 ### Q1: If a frog can jump 1 step or 2 steps. How many possible ways the frog can jump X steps?
@@ -56,8 +56,8 @@ This solution has many repeated calculations. Expensive!
 ### Improvement
 Here we can use ***dynamic programming***
 
-  Key note:
-  a) Save unique result in a map or other structure. Directly use without calculate again.
+**Key note:**
+- **a) Save unique result in a map or other structure. Directly use without calculate again.**
 
 In this example, we can save f(4), f(3),f(2) when we first calculate. Therefore we can use anytime without do a repeat calculation.
 
