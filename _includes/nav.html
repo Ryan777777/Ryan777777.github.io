@@ -1,7 +1,4 @@
 <!-- Navigation -->
-<script src="{{ site.url }}/static/app/js/util.js"></script>
-<script src="{{ site.url }}/static/app/js/base.js"></script>
-
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -14,7 +11,7 @@
             </button>
             <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.title }}</a>
         </div>
-
+        <script src="{{ "/js/base.js" | prepend: site.baseurl }}"></script>
                 <!--音乐播放器-->
                 <div class="music-warp hidden">
                     <audio id="bg-music" loop preload>
