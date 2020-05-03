@@ -14,9 +14,11 @@
         
                 <!--音乐播放器-->
                 <div class="music-warp hidden">
-                    <audio id="bg-music" loop preload>
+                    <!-- <audio id="bg-music" loop preload>
                         <source src="{{ site.url }}/static/app/res/mp3/Sky.mp3" type="audio/mpeg">
-                    </audio>
+                    </audio> -->
+
+                    <audio id="music" src="{{ site.url }}/static/app/res/mp3/Sky.mp3" autoplay="autoplay" loop="loop"></audio>
                 </div>
                 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -34,7 +36,7 @@
                     </li>
                     {% endif %}{% endfor %}
                     <li>
-                        <a id="bg-music-btn"  href="javascript:;"><i class="fa fa-fw fa-music"></i></a>
+                        <a id="audio_btn"  href="javascript:;" ><i class="fa fa-fw fa-music" id="music_btn"></i></a>
                     </li>
                 </ul>
             </div>
@@ -44,21 +46,16 @@
     <!-- /.container -->
 </nav>
 <script>
-        this.musicPlay = function () {
-        $("#bg-music-btn").on("click", function () {
-            var icon = $(this).find("i");
-            var audio = document.getElementById("bg-music");
-            if (icon.hasClass("fa-music")) {
-                icon.removeClass("fa-music").addClass("fa-volume-up");
-                audio.play()
-            } else {
-                if (icon.hasClass("fa-volume-up")) {
-                    icon.removeClass("fa-volume-up").addClass("fa-music");
-                    audio.pause()
-                }
-            }
-        })
-    };
+    $("#audio_btn").click(function(){
+        var music = document.getElementById("music");
+        if(music.paused){
+            music.play();
+            $("#music_btn").attr("src","play.gif");
+        }else{
+            music.pause();
+            $("#music_btn").attr("src","pause.gif");
+        }
+    });
 </script>
 <script>
     // Drop Bootstarp low-performance Navbar
