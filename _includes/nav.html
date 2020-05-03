@@ -35,7 +35,7 @@
                     </li>
                     {% endif %}{% endfor %}
                     <li>
-                        <a id="bg-music-btn" href="javascript:;"><mus class="fa fa-fw fa-music"></i></a>
+                        <a id="bg-music-btn" href="javascript:;"><i class="fa fa-fw fa-music"></i></a>
                     </li>
                 </ul>
             </div>
@@ -46,7 +46,7 @@
 </nav>
 <script>
     $("#bg-music-btn").click(function () {
-        var icon = document.getElementById("mus");
+        var icon = $(this).find("i");
         var audio = document.getElementById("bg-music");
         if (icon.hasClass("fa-music")) {
             icon.removeClass("fa-music").addClass("fa-volume-up");
