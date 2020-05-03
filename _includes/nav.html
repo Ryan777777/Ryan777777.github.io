@@ -46,7 +46,7 @@
 </nav>
 <script>
     $("#bg-music-btn").on("click", function () {
-        var icon = $(this).find("mus");
+        var icon = document.getElementById("mus");
         var audio = document.getElementById("bg-music");
         if (icon.hasClass("fa-music")) {
             icon.removeClass("fa-music").addClass("fa-volume-up");
