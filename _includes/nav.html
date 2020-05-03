@@ -18,7 +18,7 @@
                         <source src="{{ site.url }}/static/app/res/mp3/Sky.mp3" type="audio/mpeg">
                     </audio> -->
 
-                    <audio id="music" src="{{ site.url }}/static/app/res/mp3/Sky.mp3" autoplay="autoplay" loop="loop"></audio>
+                    <audio id="music" src="/static/app/res/mp3/Sky.mp3" autoplay="autoplay" loop="loop"></audio>
                 </div>
                 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -50,10 +50,10 @@
         var music = document.getElementById("music");
         if(music.paused){
             music.play();
-            $("#music_btn").attr("src","play.gif");
+            $("#music_btn").attr("src");
         }else{
             music.pause();
-            $("#music_btn").attr("src","pause.gif");
+            $("#music_btn").attr("src");
         }
     });
 </script>
