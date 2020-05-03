@@ -12,13 +12,6 @@
             <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.title }}</a>
         </div>
 
-
-
-        <div class="music-warp hidden">
-            <audio id="bg-music" loop preload>
-                <source src="{{ site.url }}/static/app/res/mp3/Sky.mp3" type="audio/mpeg">
-            </audio>
-        </div>
                 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div id="huxblog_navbar">
@@ -34,9 +27,6 @@
                         <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
                     </li>
                     {% endif %}{% endfor %}
-                    <li>
-                        <a id="bg-music-btn" href="javascript:;"><i class="fa fa-fw fa-music"></i></a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -44,21 +34,7 @@
     </div>
     <!-- /.container -->
 </nav>
-<script>
-    $("#bg-music-btn").click(function () {
-        var icon = $(this).find("i");
-        var audio = document.getElementById("bg-music");
-        if (icon.hasClass("fa-music")) {
-            icon.removeClass("fa-music").addClass("fa-volume-up");
-            audio.play()
-        } else {
-            if (icon.hasClass("fa-volume-up")) {
-                icon.removeClass("fa-volume-up").addClass("fa-music");
-                audio.pause()
-            }
-        }
-    });
-</script>
+
 <script>
     // Drop Bootstarp low-performance Navbar
     // Use customize navbar with high-quality material design animation
