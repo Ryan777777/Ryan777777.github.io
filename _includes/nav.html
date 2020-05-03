@@ -45,7 +45,7 @@
     <!-- /.container -->
 </nav>
 <script>
-    $("#bg-music-btn").on("click", function () {
+    $("#bg-music-btn").click(function () {
         var icon = document.getElementById("mus");
         var audio = document.getElementById("bg-music");
         if (icon.hasClass("fa-music")) {
@@ -57,7 +57,7 @@
                 audio.pause()
             }
         }
-    })
+    });
 </script>
 <script>
     // Drop Bootstarp low-performance Navbar
