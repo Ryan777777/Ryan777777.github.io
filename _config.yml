@@ -19,7 +19,7 @@ sidebar-avatar: /img/linzhang.jpg      # use absolute URL, seeing it's used in b
 # SNS settings
 RSS: false
 # weibo_username:
-# zhihu_username:     
+# zhihu_username:
 github_username:    LIN251
 facebook_username:  people/Lin-Zhang/100014322406387
 Youtube_username:   LIN ZHANG
@@ -65,8 +65,8 @@ gitalk:
   clientID: d0208c32e8c08077e783                            #生成的clientID
   clientSecret: 7cca80f4b7b29685282544a60b62befad427fce4    #生成的clientSecret
   repo: ryan777777.github.io    #仓库名称
-  owner: LIN251    #github用户名
-  admin: LIN251
+  owner: ryan777777    #github用户名
+  admin: ryan777777
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 
