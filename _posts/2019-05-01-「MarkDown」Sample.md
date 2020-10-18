@@ -2,7 +2,7 @@
 layout:     post
 title:      Writing in Markdown
 subtitle:  
-date:       2020-05-01
+date:       2019-05-01
 author:     Linz
 header-img: img/bg18.jpg
 catalog: true
@@ -34,6 +34,9 @@ let family2 =
 family1 == family2 // → true
 
 ![](https://miro.medium.com/max/6604/1*J5xIlF5pqobC9onH1NEJPg.jpeg)
+
+![case1](..\img\PostImg\0605.jpg "Title")
+
 
 😅 👨‍👩‍👧‍👦 👨 👩 👧 👦
 

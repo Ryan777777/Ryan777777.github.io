@@ -1,0 +1,80 @@
+I"i<h2 id="两个相同长度数组中找中位数29未完成">两个相同长度数组中找中位数（29）[未完成]</h2>
+
+<h3 id="题目">题目</h3>
+<p>已知两个相同长度数组. 同时两个数组内的值都是从小到大排列的。 寻找这两个数组中所有数的中位数？时间复杂度O(logN)，空间复杂度O(1).</p>
+
+<p>a = arr[1,2,3,4]，</p>
+
+<p>b = arr[3,4,7,9].</p>
+
+<h3 id="思路">思路：</h3>
+
+<p>中位数就是把两个数组的数组合并，然后找出中间的数。把上面例子合并之后获得 [1,2,3,3,4,4,7,9] 8个数，那么中位数就是第四个数,也就是 3.[两个相同长度数组合并，所以总长度一定是偶数]. 这种算法并不能达到时间和空间的要求，所以我们采用一个中分法：(算法)</p>
+
+<h3 id="算法">算法：</h3>
+
+<ol>
+  <li>
+    <p>需要确认两个arr 是不是null，防止恶意输入出错。</p>
+  </li>
+  <li>
+    <p>在第一个arr中找出中位数 [Ps：单个数组可能是奇数，偶数长度]</p>
+  </li>
+  <li>
+    <p>在第二个arr中找出中位数.</p>
+  </li>
+  <li>
+    <p>比较两个中位数的大小.</p>
+  </li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    case1 中1 &lt; 中2
+        最终的中位数一定是在第一个数组中位数的后面，和第二个数组中位数的前面。
+    case2 中1 &gt; 中2
+        最终的中位数一定是在第一个数组中位数的前面，和第二个数组中位数的后面。
+    case3 中1 = 中2
+        
+</code></pre></div></div>
+
+<p>case 1 图解</p>
+
+<p><img src="https://miro.medium.com/max/996/1*oX6LoqcADgNMLLkHESi1NA.jpeg" alt="" /></p>
+
+<ol>
+  <li>
+    <p>以此类推，在新的两个sub array中再以相同的递归进行寻找</p>
+  </li>
+  <li>
+    <p>确认递归的结束条件</p>
+  </li>
+</ol>
+
+<h3 id="代码">代码：</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getUpMedian</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">arr2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">arr1</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">arr2</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+        <span class="c1">// 开始寻找</span>
+        <span class="k">return</span> <span class="nf">find</span><span class="o">(</span><span class="n">arr1</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">arr1</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">arr2</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">arr2</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+        <span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">find</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">l1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">r1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">arr2</span><span class="o">,</span> <span class="kt">int</span> <span class="n">l2</span><span class="o">,</span> <span class="kt">int</span>
+<span class="n">r2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">mid1</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">+</span> <span class="o">(</span><span class="n">r1</span> <span class="o">-</span> <span class="n">l1</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">mid2</span> <span class="o">=</span> <span class="n">l2</span> <span class="o">+</span> <span class="o">(</span><span class="n">r2</span> <span class="o">-</span> <span class="n">l2</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="c1">// 表示数组只剩下⼀个数，把两个数组中较⼩的数返回去</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">l1</span> <span class="o">&gt;=</span> <span class="n">r1</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">arr1</span><span class="o">[</span><span class="n">l1</span><span class="o">],</span> <span class="n">arr2</span><span class="o">[</span><span class="n">l2</span><span class="o">]);</span>
+        <span class="o">}</span>
+        <span class="c1">// 元素个数为奇数，则offset为0，为偶数则 offset 为 1</span>
+        <span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="o">((</span><span class="n">r1</span> <span class="o">-</span> <span class="n">l1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">^</span> <span class="mi">1</span><span class="o">;</span><span class="c1">// ⽤位运算⽐较快</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">arr1</span><span class="o">[</span><span class="n">mid1</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">arr2</span><span class="o">[</span><span class="n">mid2</span><span class="o">])</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">find</span><span class="o">(</span><span class="n">arr1</span><span class="o">,</span> <span class="n">mid1</span><span class="o">+</span><span class="n">offset</span><span class="o">,</span> <span class="n">r1</span><span class="o">,</span> <span class="n">arr2</span><span class="o">,</span> <span class="n">l2</span><span class="o">,</span> <span class="n">mid2</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">arr1</span><span class="o">[</span><span class="n">mid1</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">arr2</span><span class="o">[</span><span class="n">mid2</span><span class="o">])</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">find</span><span class="o">(</span><span class="n">arr1</span><span class="o">,</span> <span class="n">l1</span><span class="o">,</span> <span class="n">mid1</span><span class="o">,</span> <span class="n">arr2</span><span class="o">,</span> <span class="n">mid2</span> <span class="o">+</span> <span class="n">offset</span><span class="o">,</span> <span class="n">r2</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">arr1</span><span class="o">[</span><span class="n">mid1</span><span class="o">];</span><span class="c1">// 返回 arr2[mid2]也可以。</span>
+        <span class="o">}</span>
+ <span class="o">}</span>
+</code></pre></div></div>
+:ET

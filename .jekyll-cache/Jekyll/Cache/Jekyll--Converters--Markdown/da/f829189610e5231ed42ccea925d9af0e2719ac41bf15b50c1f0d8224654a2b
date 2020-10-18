@@ -1,0 +1,49 @@
+I"y<h3 id="linux中进入docker的方法">Linux中进入Docker的方法</h3>
+
+<ol>
+  <li>使用docker attach</li>
+  <li>使用SSH</li>
+  <li>使用nsenter</li>
+  <li>使用exec</li>
+</ol>
+
+<h4 id="docker-attach">docker attach</h4>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo docker attach containerID   
+</code></pre></div></div>
+
+<p>使用该命令有一个问题。当多个窗口同时使用该命令进入该容器时，所有的窗口都会同步显示。如果有一个窗口阻塞了，那么其他窗口也无法再进行操作。</p>
+
+<p>因为这个原因，docker attach命令不太适合于生产环境，平时自己开发应用时可以使用该命令。</p>
+
+<h4 id="ssh">SSH</h4>
+
+<p>不建议使用</p>
+<ul>
+  <li><a href="https://www.oschina.net/translate/why-you-dont-need-to-run-sshd-in-docker?cmp">为什么不需要在 Docker 容器中运行 sshd</a></li>
+</ul>
+
+<h4 id="nsenter">nsenter</h4>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>安装
+$ wget https://www.kernel.org/pub/linux/utils/util-linux/v2.24/util-linux-2.24.tar.gz  
+$ tar -xzvf util-linux-2.24.tar.gz  
+$ cd util-linux-2.24/  
+$ ./configure --without-ncurses  
+$ make nsenter  
+$ sudo cp nsenter /usr/local/bin   
+
+测试
+$ sudo docker inspect --help   
+
+进入
+$ sudo docker inspect containerID  
+</code></pre></div></div>
+
+<h4 id="使用exec">使用exec</h4>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>进入
+$ sudo docker ps  
+$ sudo docker exec -it 775c7c9ee1e1 /bin/bash
+</code></pre></div></div>
+:ET

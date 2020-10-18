@@ -1,0 +1,175 @@
+I"R*<h2 id="basic-javascript">Basic JavaScript</h2>
+
+<h4 id="0-basic">0. Basic</h4>
+<ul>
+  <li>
+    <p><strong><em>A</em></strong>  Recommend to use <strong><em>‘</em></strong> instad of <strong><em>“</em></strong> , but both work. (HTML use <strong><em>“</em></strong> , so try to use <strong><em>‘</em></strong> in javascript)</p>
+  </li>
+  <li>
+    <p><strong><em>B</em></strong></p>
+  </li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">x</span><span class="o">=</span><span class="dl">"</span><span class="s2">123</span><span class="dl">"</span><span class="o">+</span><span class="mi">10</span> <span class="c1">//12310</span>
+<span class="nx">x</span><span class="o">=</span><span class="p">(</span><span class="dl">"</span><span class="s2">123</span><span class="dl">"</span><span class="o">*</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">10</span> <span class="c1">//133 *1 will change str to int</span>
+<span class="nx">x</span><span class="o">=</span><span class="p">(</span><span class="dl">"</span><span class="s2">gred</span><span class="dl">"</span><span class="o">*</span><span class="mi">1</span><span class="p">)</span> <span class="c1">//NaN</span>
+<span class="nb">isNaN</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="c1">//True</span>
+</code></pre></div></div>
+
+<h4 id="1-script-property">1. Script property</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">async</span><span class="dl">"</span> <span class="c1">// Download scripts asynchronously, does not affect html </span>
+<span class="nx">defer</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">defer</span><span class="dl">"</span> <span class="c1">// Delay loading script</span>
+<span class="nx">charset</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">utf-8</span><span class="dl">"</span> <span class="c1">// Character Encoding</span>
+<span class="nx">src</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">URL</span><span class="dl">"</span> <span class="c1">// Link</span>
+</code></pre></div></div>
+
+<h4 id="2-undefined-and-null">2. Undefined and null</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kc">undefined</span> <span class="o">==</span> <span class="kc">null</span> <span class="c1">//true (both empty)</span>
+<span class="kc">undefined</span> <span class="o">===</span> <span class="kc">null</span> <span class="c1">//false</span>
+</code></pre></div></div>
+
+<h4 id="3-javascript-object-and-function">3. JavaScript Object and function</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">// Object</span>
+
+<span class="kd">function</span> <span class="nx">f</span><span class="p">(){}</span> <span class="c1">// function</span>
+</code></pre></div></div>
+
+<h4 id="4-syntax-error">4. Syntax error</h4>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;p&gt;</span>Text1<span class="nt">&lt;/p&gt;</span>
+ <span class="nt">&lt;Script</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+ alert('test1");
+ alert("test2");
+ <span class="nt">&lt;/Script&gt;</span>
+
+ <span class="nt">&lt;p&gt;</span>Text2<span class="nt">&lt;/p&gt;</span>
+ <span class="nt">&lt;Script</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+ alert("test3");
+ <span class="nt">&lt;/Script&gt;</span>
+</code></pre></div></div>
+<p>What is the output? And: test3</p>
+
+<p>Reason: There is a syntax error in first alert between “ and ‘. This will block the first script and run the second script only.</p>
+
+<h4 id="5-getelementbyid">5. GetElementById</h4>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p&gt;</span>Hello <span class="nt">&lt;b&gt;&lt;span</span> <span class="na">id=</span><span class="s">"person"</span><span class="nt">&gt;</span>Tom<span class="nt">&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;</span>
+<span class="nt">&lt;Script&gt;</span>
+st = document.getElementById("person").innerHTML;
+//document.getElementById("person") --&gt; <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">"person"</span><span class="nt">&gt;</span>Tom<span class="nt">&lt;/span&gt;</span>
+//.innerHTML --&gt; Tom
+<span class="nt">&lt;/Script&gt;</span>
+</code></pre></div></div>
+
+<p>Use getElementById</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">onclick=</span><span class="s">"add()"</span><span class="nt">&gt;</span>Add More<span class="nt">&lt;a&gt;</span>
+<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"thelist"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li&gt;</span>First Item<span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+
+<span class="nt">&lt;Script&gt;</span>
+var counter=1;
+function add(){
+    var x = document.createElement('li');   // --&gt; <span class="nt">&lt;li&gt;&lt;/li&gt;</span>
+    x.className = "list-item";  // --&gt; <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"list-item"</span><span class="nt">&gt;&lt;/li&gt;</span>
+    x.innerHTML = "The counter"+ counter;   //--&gt; <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"list-item"</span><span class="nt">&gt;</span>The counter 1<span class="nt">&lt;/li&gt;</span>
+    document.getElementById("thelist").appendChild(x);  //append
+}
+<span class="nt">&lt;/Script&gt;</span>
+</code></pre></div></div>
+
+<h4 id="6-jquery">6. Jquery</h4>
+
+<ul>
+  <li><strong><em>A. Document</em></strong></li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Load library
+<span class="nt">&lt;Script</span> <span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"jquery.min.js"</span><span class="nt">&gt;&lt;/Script&gt;</span>
+
+<span class="nt">&lt;Script&gt;</span>
+$(document).ready(function(){});
+<span class="nt">&lt;/Script&gt;</span>
+</code></pre></div></div>
+
+<p><strong><em>$(document).ready(function(){})</em></strong></p>
+
+<p><strong><em>$</em></strong> is a name of an object(defined in jquery).</p>
+
+<p><strong><em>()</em></strong> Calling the object with the parentheses.</p>
+
+<p><strong><em>(document)</em></strong> document is the DOM that predefined in Javascript.</p>
+
+<p><strong><em>ready()</em></strong> function will register event after jquery think the DOM fully load.</p>
+
+<ul>
+  <li><strong><em>B. Windows</em></strong></li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Load library
+<span class="nt">&lt;Script</span> <span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"jquery.min.js"</span><span class="nt">&gt;&lt;/Script&gt;</span>
+
+<span class="nt">&lt;Script&gt;</span>
+$(window).resize(function(){
+    console.log('resize called and width='+
+    $(window).width()+'height='+$(window).hight()); //jquery build in method
+});
+<span class="nt">&lt;/Script&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong><em>C. Change HTML element</em></strong></li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;Script&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">'#'</span> <span class="na">onclick=</span><span class="s">"$('#eleID').css('background-color', 'red');"</span><span class="nt">&gt;</span>Red<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">'#'</span> <span class="na">onclick=</span><span class="s">"$('#eleID').hide();"</span><span class="nt">&gt;</span>Hide<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/Script&gt;</span>
+</code></pre></div></div>
+<p><strong><em>$</em></strong> is a name of an object(defined in jquery).</p>
+
+<p><strong><em>(‘#para’)</em></strong> element ID;</p>
+
+<p><strong><em>.css</em></strong> jquery build in function: change css;</p>
+
+<p><strong><em>.hide</em></strong> jquery build in function: hide elements;</p>
+
+<ul>
+  <li><strong><em>D. Jquery sends to server</em></strong></li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"target"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"one"</span> <span class="na">value=</span><span class="s">"Hello"</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">id=</span><span class="s">"spinner"</span> <span class="na">src=</span><span class="s">"spinner.gif"</span> <span class="na">hightr=</span><span class="s">"25"</span> <span class="na">sytle=</span><span class="s">"display:none;"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"result"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+
+<span class="nt">&lt;Script&gt;</span>
+$('#target').change(function(event){ 
+    //change is a jquery build in function: listen to the changes
+    $('#spinner').show; //show the spinner
+    var form = $(#'target'); //find the form
+    var txt = form.find('input[name="one"]').var; //find the value changes
+    $.post(
+        'server.php', //call the server
+        {'var':txt}, //send the variable 
+        function(data){ //when variable returns, what jquery will do.
+            $('#result').empty().append(data);
+            <span class="ni">&amp;('#spinner').hide();</span> //hide the spinner since we finish.
+        }
+    ).error(
+        function(){ //when return 404 error.
+            alert("error")
+        }
+    ) 
+})
+<span class="nt">&lt;/Script&gt;</span>
+</code></pre></div></div>
+:ET

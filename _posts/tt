@@ -1,0 +1,12 @@
+JS 正则表达式 获取小括号 中括号 花括号内的内容
+
+var str="123{xxxx}456[我的]789123[你的]456(1389090)789";
+
+var regex1 = /\((.+?)\)/g;   // () 小括号
+var regex2 = /\[(.+?)\]/g;   // [] 中括号
+var regex3 = /\{(.+?)\}/g;  // {} 花括号，大括号
+
+// 输出是一个数组
+console.log(str.match(regex1)); 
+console.log(str.match(regex2));
+console.log(str.match(regex3));

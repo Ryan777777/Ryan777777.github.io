@@ -1,0 +1,39 @@
+I"�<p>基于 Centos 7</p>
+
+<h2 id="linux下创建桌面快捷方式">Linux下创建桌面快捷方式</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim /usr/share/applications/pycharm.desktop 
+</code></pre></div></div>
+<p>这里不要使用root用户，否则后面快捷方式会有信任问题，无法打开。</p>
+
+<h4 id="修改文本">修改文本</h4>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Desktop Entry]
+Encoding=UTF-8
+Name=Pycharm
+Comment=pycharm-2017.1
+Exec=/home/路径/pycharm-2018.1.4/bin/pycharm.sh
+Icon=/home/路径/pycharm-2018.1.4/bin/pycharm.png
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=Application;
+</code></pre></div></div>
+
+<h4 id="修改文件可执行权限">修改文件可执行权限</h4>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod a+x /home/rong/Desktop/pycharm.desktop
+</code></pre></div></div>
+
+<h4 id="复制到桌面">复制到桌面</h4>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp pycharm.desktop /home/name/Desktop
+</code></pre></div></div>
+<p>双击使用。</p>
+
+<h2 id="geany-linux下好用的文本编辑器">geany Linux下好用的文本编辑器</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ yum install epel-release
+$ yum install geany
+
+//直接安装会报错，因为 yum queries a collection of online repositories... 
+//it doesn't find the package.，所以要加入一个common repository to yum queries
+</code></pre></div></div>
+:ET

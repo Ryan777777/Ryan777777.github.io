@@ -1,0 +1,250 @@
+I"
+|<h2 id="java">Java</h2>
+<h2 id="0-java-接口类">0. java 接口，类</h2>
+<h3 id="接口interface">接口（interface）</h3>
+<p>interface Alram {
+}
+接口不能实（implements)接口,只能继承（extend）多个多个其它的接口
+Java接口必须通过类来实现它的抽象方法;
+类实现了某个Java接口时,它必须实现接口中的所有抽象方法,否则这个类必须声明为抽象类;
+一个类只能继承一个直接的父类,但可以实现多个接口
+  // ps： 因为如果支持多继承的话，假设多个父类中有相同的成员，那么其子类就不搞清楚到底使用哪个父类的同名成员了.</p>
+
+<h3 id="抽象类abstract">抽象类（abstract）</h3>
+<p>【类可以extend 抽象类】
+abstract class Door {
+}
+1）抽象方法必须为public或者protected（因为如果为private，则不能被子类继承，子类便无法实现该方法），缺省情况下默认为public。</p>
+
+<p>　　2）抽象类不能用来创建对象；</p>
+
+<p>　　3）如果一个类继承于一个抽象类，则子类必须实现父类的抽象方法。如果子类没有实现父类的抽象方法，则必须将子类也定义为为abstract类。</p>
+
+<h4 id="区别">区别：</h4>
+<p>interface 只能extend（可以多个）
+			   不能implements</p>
+
+<p>class       可以extend（一个）抽象类
+			   可以implements（多个）
+			 （abstract class 跟class一样）</p>
+
+<h2 id="转换">转换</h2>
+<h6 id="string-to-int">String to int:</h6>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">string</span><span class="o">);</span>
+</code></pre></div></div>
+<h6 id="int-to-string-">int to String :</h6>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">res</span><span class="o">)</span>  
+<span class="nc">String</span> <span class="n">a</span> <span class="o">=</span> <span class="n">res</span><span class="o">+</span><span class="err">“”；</span>
+</code></pre></div></div>
+<h4 id="string-to-char">string to char</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">string</span> <span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+<span class="kt">char</span> <span class="n">c</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</code></pre></div></div>
+<h4 id="char-to-string">char to string</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">a</span> <span class="o">=</span> <span class="nc">String</span><span class="o">(</span><span class="kt">char</span><span class="o">[]);</span>  <span class="err">（</span><span class="n">构造函数</span><span class="o">)</span>
+<span class="nc">String</span> <span class="n">a</span> <span class="o">=</span> <span class="nc">String</span><span class="o">(</span><span class="kt">char</span><span class="o">[],</span><span class="n">offset</span><span class="o">,</span><span class="n">count</span><span class="o">);</span><span class="err">（</span><span class="n">构造函数</span><span class="o">)</span>
+<span class="kd">static</span> <span class="n">string</span> <span class="nf">copyValueOf</span><span class="o">(</span><span class="kt">char</span><span class="o">[]);(</span><span class="n">静态方法</span><span class="o">)</span>
+<span class="n">copyValueOf</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">data</span><span class="o">,</span><span class="kt">int</span> <span class="n">offset</span><span class="o">,</span><span class="kt">int</span> <span class="n">count</span><span class="o">);</span> <span class="o">(</span><span class="n">静态方法</span><span class="o">)</span>
+<span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">res</span><span class="o">)</span> <span class="err">；（</span><span class="n">可以将基本数据类型转换成字符串</span><span class="err">）</span>
+</code></pre></div></div>
+
+<h2 id="string">String</h2>
+<h6 id="string-to-int-1">String to int:</h6>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">string</span><span class="o">);</span>
+</code></pre></div></div>
+<h6 id="substring">substring:</h6>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">S</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">position1</span><span class="o">,</span> <span class="n">position2</span><span class="o">+</span><span class="mi">1</span><span class="o">)</span><span class="c1">// 这个是包含头，不包含尾，所以+1</span>
+</code></pre></div></div>
+<h6 id="切割">切割</h6>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span><span class="o">[]</span> <span class="n">a</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">"xxx"</span><span class="o">);</span>
+</code></pre></div></div>
+<h6 id="去除两边空格">去除两边空格</h6>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span><span class="o">[]</span> <span class="n">a</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">trim</span><span class="o">();</span>
+</code></pre></div></div>
+<h2 id="int">Int</h2>
+<h6 id="find-max">find Max:</h6>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
+</code></pre></div></div>
+<h6 id="int-to-string--1">int to String :</h6>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">res</span><span class="o">)</span>
+</code></pre></div></div>
+<h4 id="char-to-string-1">char to String</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">a</span> <span class="o">=</span> <span class="nc">Character</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">tempKey</span><span class="o">)</span>
+</code></pre></div></div>
+<h4 id="string-to-char-1">string to char</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">char</span> <span class="n">c</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h4 id="交集">交集：</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set1</span><span class="o">.</span><span class="na">retainAll</span><span class="o">(</span><span class="n">set2</span><span class="o">);</span>
+</code></pre></div></div>
+<h4 id="并集">并集</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set1</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">set2</span><span class="o">);</span>
+</code></pre></div></div>
+<h4 id="差集">差集</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set1</span><span class="o">.</span><span class="na">removeAll</span><span class="o">(</span><span class="n">set2</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h4 id="读文件">读文件</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span> 
+	<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+	<span class="kn">import</span> <span class="nn">java.io.FileNotFoundException</span><span class="o">;</span> 
+	  <span class="nc">File</span> <span class="n">myObj</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"2.txt"</span><span class="o">);</span>
+	   <span class="nc">Scanner</span> <span class="n">myReader</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="n">myObj</span><span class="o">);</span>
+	   <span class="k">while</span> <span class="o">(</span><span class="n">myReader</span><span class="o">.</span><span class="na">hasNextLine</span><span class="o">())</span> <span class="o">{</span>
+	                    <span class="nc">String</span> <span class="n">data</span> <span class="o">=</span> <span class="n">myReader</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+	                    <span class="o">}</span>
+	   <span class="n">myReader</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre></div></div>
+<h4 id="写文件">写文件</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="kn">import</span> <span class="nn">java.io.PrintWriter</span><span class="o">;</span>
+	<span class="nc">PrintWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PrintWriter</span><span class="o">(</span><span class="s">"2_out.txt"</span><span class="o">);</span>
+	<span class="n">writer</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">info</span><span class="o">);</span>
+	<span class="n">writer</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre></div></div>
+<h4 id="iterator-的使用方法">Iterator 的使用方法</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">需要先建立一个Iterator对象</span><span class="err">，</span><span class="n">对应</span><span class="o">(</span><span class="n">list</span><span class="o">,</span><span class="n">set</span><span class="err">·····</span><span class="o">)</span>
+		<span class="nc">Iterator</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span> 
+	  
+	        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"List elements : "</span><span class="o">);</span> 
+	  
+	        <span class="k">while</span> <span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> 
+	            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">next</span><span class="o">()</span> <span class="o">+</span> <span class="s">" "</span><span class="o">);</span> 
+	  
+	        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+</code></pre></div></div>
+<hr />
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#### Set接口   ```java
+Set&lt;String&gt; currentSet = new HastSet&lt;String&gt;();
+Set&lt;String&gt; currentSet = new LinkedHashSet&lt;String&gt;();
+Set&lt;String&gt; currentSet = new TreeSet&lt;String&gt;();
+```
+#### List接口:   ```java
+List&lt;String&gt; currentList = new ArrayList&lt;String&gt;();
+List&lt;String&gt; currentList = new Vector&lt;String&gt;();
+List&lt;String&gt; currentList = new LinkedList&lt;String&gt;();
+```
+#### Map接口:   ```java
+Map&lt;Character,Integer&gt; curmap = new HashMap&lt;Character,Integer&gt; ();
+Map&lt;Character,Integer&gt; curmap = new TreeMap&lt;Character,Integer&gt; ();
+Map&lt;Character,Integer&gt; curmap = new HashTable&lt;Character,Integer&gt; ();   ``` ##### -------------------------
+</code></pre></div></div>
+
+<h2 id="1set-in-java">1.Set in java</h2>
+<p>An unordered collection of objects in which duplicate values cannot be stored.
+Basically, Set is implemented by HashSet, LinkedHashSet or TreeSet (sorted representation).
+Set has various methods to add, remove clear, size, etc.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Java code for adding elements in Set </span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span> 
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Set_example</span> 
+<span class="o">{</span> 
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> 
+    <span class="o">{</span> 
+        <span class="c1">// Set deonstration using HashSet </span>
+        <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Character</span><span class="o">&gt;</span> <span class="n">hash_Set</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashSet</span><span class="o">&lt;</span><span class="nc">Character</span><span class="o">&gt;();</span> 
+        <span class="n">hash_Set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"G"</span><span class="o">);</span> 
+        <span class="n">hash_Set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"F"</span><span class="o">);</span> 
+        <span class="n">hash_Set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"G"</span><span class="o">);</span> 
+        <span class="n">hash_Set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"E"</span><span class="o">);</span> 
+        <span class="n">hash_Set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"S"</span><span class="o">);</span> 
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Set output without the duplicates"</span><span class="o">);</span> 
+  
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">hash_Set</span><span class="o">);</span> 
+  
+        <span class="c1">// Set deonstration using TreeSet </span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Sorted Set after passing into TreeSet"</span><span class="o">);</span> 
+        <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">tree_Set</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeSet</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;(</span><span class="n">hash_Set</span><span class="o">);</span> 
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">tree_Set</span><span class="o">);</span> 
+    <span class="o">}</span> 
+<span class="o">}</span>  
+<span class="nc">Set</span> <span class="n">output</span> <span class="n">without</span> <span class="n">the</span> <span class="n">duplicates</span><span class="o">[</span><span class="no">G</span><span class="o">,</span> <span class="no">E</span><span class="o">,</span> <span class="no">F</span><span class="o">,</span> <span class="no">S</span><span class="o">]</span>
+<span class="nc">Sorted</span> <span class="nc">Set</span> <span class="n">after</span> <span class="n">passing</span> <span class="n">into</span> <span class="nc">TreeSet</span><span class="o">[</span><span class="no">E</span><span class="o">,</span> <span class="no">F</span><span class="o">,</span> <span class="no">G</span><span class="o">,</span> <span class="no">S</span><span class="o">]</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="o">.</span><span class="na">Set</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">test1</span> <span class="o">=</span>  <span class="k">new</span> <span class="nc">HashSet</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;()</span>
+<span class="c1">//去除重复的内容</span>
+<span class="mi">2</span><span class="nc">Set</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">test2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeSet</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;(</span><span class="n">test1</span><span class="o">).</span>
+<span class="c1">//对去重复之后的内容进行字母数字order排序</span>
+<span class="mi">3</span><span class="o">.</span><span class="na">Function</span><span class="o">:</span>
+<span class="err">######</span> <span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="n">test1</span><span class="o">.</span><span class="na">contains</span><span class="o">();</span>
+<span class="n">test1</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+<span class="n">test1</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">();</span>
+<span class="n">test1</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+<span class="n">test1</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
+<span class="n">test1</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+<span class="n">test1</span><span class="o">.</span><span class="na">equal</span><span class="o">();</span>
+</code></pre></div></div>
+
+<h2 id="2list-in-java">2.List in java</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">intList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+     <span class="n">size</span><span class="o">();</span>
+     <span class="n">indexOf</span><span class="o">(</span><span class="mi">77</span><span class="o">)</span>
+     <span class="n">contains</span><span class="o">();</span>
+     <span class="n">toArray</span><span class="o">();</span>
+     <span class="n">add</span><span class="o">();</span>
+     <span class="n">remove</span><span class="o">();</span>
+     <span class="n">removeAll</span><span class="o">();</span>
+     <span class="n">replaceAll</span><span class="o">();</span>
+     <span class="n">sort</span><span class="o">();</span>
+     <span class="n">clear</span><span class="o">();</span>
+     <span class="n">indexOf</span><span class="o">();</span>
+     <span class="n">get</span><span class="o">();</span>
+</code></pre></div></div>
+<h2 id="3array-in-java">3.Array in java</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="mi">13</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">45</span><span class="o">,</span> <span class="mi">21</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">100</span><span class="o">};</span> 
+       <span class="kt">int</span><span class="o">[]</span> <span class="n">intArray</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">20</span><span class="o">];</span>     <span class="c1">//数据不明确，new是建在堆内存中</span>
+       <span class="kt">int</span><span class="o">[]</span> <span class="n">intArray</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span><span class="mi">13</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">45</span><span class="o">,</span> <span class="mi">21</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">100</span><span class="o">};</span> 
+       
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+		<span class="nl">output:</span> <span class="o">[</span><span class="no">I</span><span class="nd">@de6ced</span>
+	    <span class="c1">// [ 表示是一个数组。 I 表示是int 值  后面是哈希算法array地址 </span>
+
+        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">arr</span><span class="o">).</span><span class="na">min</span><span class="o">().</span><span class="na">getAsInt</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">arr</span><span class="o">).</span><span class="na">max</span><span class="o">().</span><span class="na">getAsInt</span><span class="o">();</span>
+        
+       <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span> 
+       <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span> 
+       <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="nc">Collections</span><span class="o">.</span><span class="na">reverseOrder</span><span class="o">());</span> 
+       <span class="nc">Arrays</span><span class="o">.</span><span class="na">binarySearch</span><span class="o">(</span><span class="n">array</span><span class="o">,</span><span class="n">key</span><span class="o">);</span>
+       <span class="nc">Arrays</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">arr1</span><span class="o">,</span> <span class="n">arr2</span><span class="o">);</span>
+       <span class="n">arr</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="mi">87</span><span class="o">);</span>   <span class="c1">// all change to 87</span>
+       <span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+       
+  <span class="err">###</span> <span class="nc">Array</span> <span class="n">to</span> <span class="n">list</span><span class="o">,</span> <span class="n">toArrayList</span>
+  	<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+      <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">a</span><span class="o">));</span>
+ 	
+ 	<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+       <span class="nc">Integer</span><span class="o">[]</span> <span class="n">spam</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Integer</span><span class="o">[]</span> <span class="o">{</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span> <span class="o">};</span>
+	   <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">spam</span><span class="o">);</span>
+	   
+	   <span class="kt">int</span><span class="o">[]</span> <span class="n">spam</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span> <span class="o">};</span>
+	   <span class="nc">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">spam</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<h2 id="4hashmap-in-java">4.HashMap in java</h2>
+<p>hashmap里查找元素的时间复杂度近似常数</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">;</span>
+ <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
+ 
+     <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span> <span class="n">k</span><span class="o">,</span> <span class="n">v</span><span class="o">);</span>
+     <span class="n">map</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+     <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span> <span class="n">k</span> <span class="o">);</span>    
+     <span class="n">map</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+     <span class="n">map</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+     <span class="n">map</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="n">k</span><span class="o">,</span><span class="n">oldV</span><span class="o">,</span><span class="n">newV</span><span class="o">);</span>     
+</code></pre></div></div>
+
+<h2 id="5bufferedreader">5BufferedReader</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nc">BufferedReader</span> <span class="n">reader</span><span class="o">=</span><span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="n">filePath</span><span class="o">)</span>	
+
+<span class="kt">int</span> <span class="nf">read</span><span class="o">()</span>					<span class="n">读取单个字符</span><span class="err">。</span>
+<span class="kt">int</span> <span class="nf">read</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">cbuf</span><span class="o">,</span> <span class="kt">int</span> <span class="n">off</span><span class="o">,</span> <span class="kt">int</span> <span class="n">len</span><span class="o">)</span>	<span class="n">将字符读入数组的某一部分</span><span class="err">。</span>
+<span class="nc">String</span> <span class="nf">readLine</span><span class="o">()</span>			<span class="n">读取一个文本行</span><span class="err">。</span>
+<span class="kt">long</span> <span class="nf">skip</span><span class="o">(</span><span class="kt">long</span> <span class="n">n</span><span class="o">)</span>				<span class="n">跳过字符</span><span class="err">。</span>
+<span class="kt">boolean</span> <span class="nf">ready</span><span class="o">()</span>				<span class="n">判断此流是否已准备好被读取</span><span class="err">。</span>
+<span class="kt">void</span> <span class="nf">close</span><span class="o">()</span>				<span class="n">关闭该流并释放与之关联的所有资源</span><span class="err">。</span>
+<span class="kt">void</span> <span class="nf">reset</span><span class="o">()</span>					<span class="n">将流重置到最新的标记</span><span class="err">。</span>
+</code></pre></div></div>
+:ET

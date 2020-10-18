@@ -1,0 +1,42 @@
+I"�<h2 id="1-regular-expression-in-javascript">1. Regular expression in javascript</h2>
+
+<p><strong><em>String example:</em></strong>
+var regularExpression = “(b)+bab(babab)+[a+b]-{ab}”;</p>
+
+<h4 id="parentheses-">Parentheses ()</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">regex1</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\((</span><span class="sr">.+</span><span class="se">?)\)</span><span class="sr">/g</span><span class="p">;</span>  
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularExpression</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">regex1</span><span class="p">));</span> 
+</code></pre></div></div>
+<h4 id="square-brackets-">Square brackets []</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">regex2</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\[(</span><span class="sr">.+</span><span class="se">?)\]</span><span class="sr">/g</span><span class="p">;</span> 
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularExpression</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">regex2</span><span class="p">));</span> 
+</code></pre></div></div>
+
+<h4 id="big-parantheses-">big parantheses {}</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">regex3</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\{(</span><span class="sr">.+</span><span class="se">?)\}</span><span class="sr">/g</span><span class="p">;</span> 
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularExpression</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">regex3</span><span class="p">));</span> 
+</code></pre></div></div>
+
+<h2 id="2-generate-random-string">2. Generate random string</h2>
+<p>Goal:</p>
+<ol>
+  <li>Generate a fix length random string.</li>
+  <li>Generate a random length rangom string.</li>
+  <li>Provides a Letter pool.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">randomStringGenerate</span><span class="p">(</span><span class="nx">flag</span><span class="p">,</span> <span class="nx">min</span><span class="p">,</span> <span class="nx">max</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">letterPool</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">b</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">c</span><span class="dl">"</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">stringLength</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">flag</span><span class="p">){</span>
+ <span class="nx">stringLength</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="nx">max</span><span class="o">-</span><span class="nx">min</span><span class="p">))</span> <span class="o">+</span> <span class="nx">min</span><span class="p">;</span> <span class="c1">// generate a number</span>
+  <span class="p">}</span>
+  <span class="c1">//generate string</span>
+  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">a</span> <span class="o">&lt;</span><span class="nx">stringLength</span> <span class="p">;</span> <span class="nx">a</span><span class="o">++</span> <span class="p">){</span>
+   <span class="nx">pos</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// same logic, generate a number</span>
+   <span class="nx">str</span> <span class="o">+=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">pos</span><span class="p">];</span> <span class="c1">// add position char to str</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+:ET

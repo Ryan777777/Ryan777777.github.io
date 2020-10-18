@@ -1,0 +1,40 @@
+I"<h2 id="flask">Flask</h2>
+<p>Continue “Python Flask 1”</p>
+
+<h3 id="basic-structure">Basic Structure</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| - projectName
+	| - app  //app
+		| - templates //jinjia2 templates
+		| - static // static files
+		| - main  
+			| - __init__.py
+			|- errors.py
+			|- forms.py
+			|- views.py
+		|- __init__.py
+		|- models.py //database
+		|- __init__.py
+	|- venv  //python env
+	|- requirements.txt //requirements
+	|- config.py //Global configuration file
+	|- manage.py //start file
+</code></pre></div></div>
+
+<h3 id="flask-html-template-links-css-or-image-file">Flask html template links css or image file</h3>
+
+<!-- **session：** 只要设置，在任意请求中都能拿到，无论你拿多少次
+
+    在flask当中使用 session 时，必须要做一个配置,即 flask的session中需要用到的秘钥字符串，可以是任意值
+    flask默认把数据存放到了cookie中 -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Regular
+&lt;link rel="stylesheet" type="text/css" href="template/bootstrap/css/bootstrap.min.css"&gt;
+
+Flask css：
+
+&lt;link rel="stylesheet" type="text/css" href=""&gt;
+
+
+</code></pre></div></div>
+
+:ET

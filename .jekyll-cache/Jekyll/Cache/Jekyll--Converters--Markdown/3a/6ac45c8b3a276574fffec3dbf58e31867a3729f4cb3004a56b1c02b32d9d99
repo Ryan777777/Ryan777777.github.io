@@ -1,0 +1,122 @@
+I"�)<h2 id="recursion">Recursion</h2>
+
+<p><strong>Key note:</strong></p>
+<ul>
+  <li><strong>a) Find the relationship between current function and the next function.</strong></li>
+  <li><strong>b) Find the end condition.</strong></li>
+</ul>
+
+<h3 id="q1-if-a-frog-can-jump-1-step-or-2-steps-how-many-possible-ways-the-frog-can-jump-x-steps">Q1: If a frog can jump 1 step or 2 steps. How many possible ways the frog can jump X steps?</h3>
+
+<p>a) Relationship between each step: Assume we have n steps. Totally, there are f(n) possible ways to jump. Each
+time there are two possible: 1 step or 2 steps.</p>
+
+<p>Case 1, if jump 1 step first, then we will have n-1 steps remaining which is f(n-1) possible ways.</p>
+
+<p>Case 2, if jump 2 step first, then we will have n-2 steps remaining which is f(n-2) possible ways
+Therefore: f(n) = f(n-1) +f(n-2)</p>
+
+<p>b) End condition:</p>
+
+<p>When n &lt; 0. There are 0 possible ways to jump, so f(n) = 0
+(Not count, since we limit n=1）</p>
+
+<p>When n == 0. There are 0 possible ways to jump, so f(n) = 1
+(Count, since there is a way to jump)</p>
+
+<p>When n = 1. There are 1 possible way to jump, so f(n) = 1</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">recusion</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">)</span> <span class="o">{</span>
+ <span class="k">if</span><span class="o">(</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">){</span>
+ <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+ <span class="o">}</span>
+ <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+ <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+ <span class="o">}</span>
+ <span class="k">else</span><span class="o">{</span>
+ <span class="k">return</span> <span class="nf">recusion</span><span class="o">(</span><span class="n">a</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="n">recusion</span><span class="o">(</span><span class="n">a</span><span class="o">-</span><span class="mi">2</span><span class="o">);</span>
+ <span class="o">}</span>
+</code></pre></div></div>
+<p>This solution has many repeated calculations. Expensive!</p>
+
+<h3 id="improvement">Improvement</h3>
+<p>Here we can use <strong><em>dynamic programming</em></strong></p>
+
+<p><strong>Key note:</strong></p>
+<ul>
+  <li><strong>a) Save unique result in a map or other structure. Directly use without calculate again.</strong></li>
+</ul>
+
+<p>In this example, we can save f(4), f(3),f(2) when we first calculate. Therefore we can use anytime without do a repeat calculation.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">dynamic</span><span class="o">(</span> <span class="kt">int</span> <span class="n">a</span> <span class="o">){</span>
+ <span class="k">if</span><span class="o">(</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">){</span>
+ <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+ <span class="o">}</span>
+ <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+ <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+ <span class="o">}</span>
+ <span class="k">else</span><span class="o">{</span>
+ <span class="k">if</span><span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">a</span><span class="o">)){</span>
+   <span class="k">return</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+ <span class="o">}</span>
+ <span class="k">else</span><span class="o">{</span>
+ <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">dynamic</span><span class="o">(</span><span class="n">a</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="n">dynamic</span><span class="o">(</span><span class="n">a</span><span class="o">-</span><span class="mi">2</span><span class="o">);</span>
+ <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">val</span><span class="o">);</span>
+ <span class="k">return</span> <span class="n">val</span><span class="o">;</span>
+ <span class="o">}</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="https://miro.medium.com/max/700/1*7zbFbotrSx7mzmo_3zJDCg.jpeg" alt="" /></p>
+
+<p>This approach can save lots of time. In another word, when you finish one problem, you need to think about the time and space complexity. Try to reduce them or is there a way to use space complexity to displace time complexity.</p>
+
+<h3 id="improvement-again">Improvement again?</h3>
+<p>Yes
+Think about this Fibonacci approach (No map, less space complexity):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">improve</span><span class="o">(</span> <span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+ <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="o">){</span>
+ <span class="k">return</span> <span class="n">n</span><span class="o">;</span>
+ <span class="o">}</span>
+ <span class="kt">int</span> <span class="n">f1</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+ <span class="kt">int</span> <span class="n">f2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+ <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+ <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+ <span class="n">sum</span> <span class="o">=</span> <span class="n">f1</span> <span class="o">+</span> <span class="n">f2</span><span class="o">;</span>
+ <span class="n">f1</span> <span class="o">=</span> <span class="n">f2</span><span class="o">;</span>
+ <span class="n">f2</span> <span class="o">=</span> <span class="n">sum</span><span class="o">;</span>
+ <span class="o">}</span>
+ <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="q2-if-a-frog-can-jump-1-step-2-steps-3-steps--or-x-step-each-times-how-many-possible-ways-the-frog-can-jump-x-steps">Q2: If a frog can jump 1 step, 2 steps, 3 steps ····· or X step each times. How many possible ways the frog can jump X steps?</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">dynamic</span><span class="o">(</span> <span class="kt">int</span> <span class="n">a</span> <span class="o">){</span>
+ <span class="k">if</span><span class="o">(</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">){</span>
+ <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+ <span class="o">}</span>
+ <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+ <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+ <span class="o">}</span>
+ <span class="k">else</span><span class="o">{</span>
+ <span class="k">if</span><span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">a</span><span class="o">)){</span>
+ <span class="k">return</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+ <span class="o">}</span>
+ <span class="k">else</span><span class="o">{</span>
+ <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+ <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">a</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+ <span class="n">val</span> <span class="o">+=</span> <span class="n">dynamic</span><span class="o">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">i</span><span class="o">);</span>
+ <span class="o">}</span>
+ <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">val</span><span class="o">);</span>
+ <span class="k">return</span> <span class="n">val</span><span class="o">;</span>
+ <span class="o">}</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+:ET

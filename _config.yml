@@ -5,9 +5,9 @@ header-img: img/bg12.jpg
 email: lz2304@vt.edu
 description: "Every failure is leading towards success."
 keyword: "LinZ, LinZ Blog, 张淋的博客, LinZhang, 张淋, Java, Algorithm, Android"
-url: "https://ryan777777.github.io/"          # your host, for absolute URL
+url: "https://lin251.github.io/"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/Ryan777777/Ryan777777.github.io" # you code repository
+github_repo: "https://github.com/LIN251/LIN251.github.io" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
@@ -62,11 +62,11 @@ kramdown:
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: 9636219e0b346167e640                            #生成的clientID
-  clientSecret: 975e994ce44ff9d884e58cb302b2d20cb947893f    #生成的clientSecret
-  repo: ryan777777.github.io    #仓库名称
-  owner: ryan777777    #github用户名
-  admin: ryan777777
+  clientID: 08d223002d95b2a04216                            #生成的clientID
+  clientSecret: 11d525c6a4d2dedcd083bde113fbb193eb5b7e80    #生成的clientSecret
+  repo: LIN251.github.io    #仓库名称
+  owner: LIN251    #github用户名
+  admin: LIN251
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 

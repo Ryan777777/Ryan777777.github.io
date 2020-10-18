@@ -1,0 +1,79 @@
+I"<p>Json example:
+<strong><em>Name: testJson.json</em></strong></p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">json</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">Server</span><span class="w">
+</span><span class="p">[{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AA"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zhangguoli@123.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pets"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nl">"animal"</span><span class="p">:</span><span class="s2">"hamster"</span><span class="p">,</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"Lightning"</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cc"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zhenjie@123.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pets"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nl">"animal"</span><span class="p">:</span><span class="s2">"dog"</span><span class="p">,</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"Fido"</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nl">"animal"</span><span class="p">:</span><span class="s2">"cat"</span><span class="p">,</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"Felix"</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="nl">"animal"</span><span class="p">:</span><span class="s2">"hamster"</span><span class="p">,</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"Lightning"</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="1-load">1. Load</h2>
+
+<h4 id="wrong-way">Wrong way</h4>
+<pre><code class="language-Javascript">
+   data = '[{"test1" : "50", "test2" : "90"}]';
+
+   function load() {
+    var someData = JSON.parse(data);
+    console.log(someData[0].test2); // Log "90"
+    }
+</code></pre>
+
+<p>This is not a correct way to load a json file. It creates a json formate variable then access the variable in the same file scope. No data request between different files.</p>
+
+<h4 id="local-request">Local (request)</h4>
+<p>Load a local json file is not very useful, but good to know.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">json</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./testJson.json</span><span class="dl">'</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">json</span><span class="p">)</span>
+</code></pre></div></div>
+<h4 id="server-directly">Server (Directly)</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="dl">"</span><span class="s2">./testJson.json</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span> <span class="c1">// this will show the info it in firebug console</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<h4 id="server-ajax">Server (AJAX)</h4>
+
+<pre><code class="language-Html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;p id="demo"&gt;&lt;/p&gt;   //text will shows here
+&lt;script&gt;
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 &amp;&amp; this.status == 200) {
+    var obj = JSON.parse(this.responseText);
+    document.getElementById("demo").innerHTML = obj[0].email;
+  }
+};
+xmlhttp.open("GET", "file.txt", true);
+xmlhttp.send();
+&lt;script&gt;
+
+</code></pre>
+
+<h2 id="2-add">2. Add</h2>
+
+<h4 id="server-ajax-1">Server (AJAX)</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">append</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="dl">"</span><span class="s2">./testJson.json</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">json</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">push</span><span class="p">({</span>
+      <span class="dl">"</span><span class="s2">sex</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">male</span><span class="dl">"</span><span class="p">,</span>
+    <span class="p">});</span>
+    <span class="nx">txt</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+:ET

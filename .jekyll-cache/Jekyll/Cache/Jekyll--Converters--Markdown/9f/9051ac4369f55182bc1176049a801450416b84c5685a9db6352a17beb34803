@@ -1,0 +1,233 @@
+I"�e<h1 id="dynamic-programming">Dynamic Programming</h1>
+
+<h3 id="what-is--dynamic-programming">What is  Dynamic Programming</h3>
+
+<p><strong>It is an algorithm, that will save current unique result in order to avoid repeat calculation. In general, we save the result to a one dimensional array or two dimensional array.</strong></p>
+
+<h5 id="step-1">Step 1</h5>
+<p><strong>Defines the meaning of array-elements</strong>. As we mention before, we need a one dimensional array to save the result. This is important by understanding the question and have a general about how to solve the problem.</p>
+
+<h5 id="step-2">Step 2</h5>
+<p><strong>Find the relationship between elements</strong>. This likes a recursive function. When we want to calculate f(n), we can use f(n-1),f(n-2),f(n-3)···.</p>
+
+<h5 id="step-3">Step 3</h5>
+<p><strong>Find the initial value</strong>. This is the stat value. We can consider as the end condition in recursive function. Is shows where the dynamic programming should start at.</p>
+
+<h5 id="one-dimensional-array">One dimensional array</h5>
+
+<p>Q1 A frog can jump 1 step or 2 step each time. How many possible ways to jump N steps?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>step1:
+Defines the meaning of array-elements: In this problem, we can defines dp[n] means how many possible ways to jump. For example dp[1] = 1 means there are 1 choices to jump 1 steps. As well as dp[2] = 2
+
+stpe2
+Find relationship, this is the hardest part in dynamic programming. In this example, Our goal is to find dp[n], which can jump from dp[n-1] and dp[n-2]. What is the relationship between dp[3], dp[2], dp[1]?
+Case 1, jump once from steps 1 to steps 3.   
+Case 2, jump once from steps 2 to steps 3.
+Therefore, the possible ways to jump to steps 3 is the sum of the possible ways jump to steps 2 and the possible ways jump to step 1.
+So we have dp[n] = dp[n-1] + dp[n-2]
+
+stpe3
+Initial value: No negative jump. dp[0] = 0, dp[1] = 1, dp[2] = 2.  
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">public</span> <span class="kt">int</span> <span class="nf">fast</span><span class="o">(</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">){</span>
+      <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="o">)</span>
+          <span class="k">return</span> <span class="n">n</span><span class="o">;</span>
+      <span class="c1">// create an one dimensional array to save data. Since dp[0],</span>
+      <span class="c1">// so the size will be int[n+1]</span>
+      <span class="kt">int</span><span class="o">[]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span>
+      <span class="c1">// give the initial value</span>
+      <span class="n">dp</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+      <span class="n">dp</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+      <span class="n">dp</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+      <span class="c1">// relationship between elements</span>
+      <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+          <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="o">];</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="n">dp</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
+  <span class="o">}</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>value</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>5</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In general, this likes a recursion function. The only different is we save the intermediate results to an array to avoid repeat calculations.</p>
+
+<h5 id="two-dimensional-array">Two dimensional array:</h5>
+
+<p>A robot is located at the top-left corner of a m x n grid. The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (n, m less than 100).</p>
+
+<p>How many possible unique paths are there? <a href="https://leetcode.com/problems/unique-paths/">Source: Leecode 62</a></p>
+
+<p><img src="https://miro.medium.com/max/764/1*csZyGQGnyAsZdZhG5yEqmg.png" alt="" /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> step1:
+ Defines the meaning of array-elements: In this problem, we can defines dp[i][j] means how many possible ways to position(i, j). Our goal is to find dp[i-1][j-1], since it start at dp[0][0].
+ stpe2
+ Find relationship, We can imaging for each position (a, b). There are two possible, one is from dp[a-1][b], and another is from dp[a][b-1]. So we need to sum them up. That is it.
+ dp[i][j] = dp[i-1][j] + dp[i][j-1]
+ stpe3
+ Initial value: if i or j is 0. We do not need to count the relationship dp[i][j] = dp[i-1][j] + dp[i][j-1], since i-1 or j-1 will be negative.
+ Therefore:
+ dp[0] [0….n-1] = 1; // directly go first row
+ dp[0…m-1] [0] = 1; // directly go downward
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">uniquePaths</span><span class="o">(</span><span class="kt">int</span> <span class="n">m</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+     <span class="k">if</span> <span class="o">(</span><span class="n">m</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+         <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+     <span class="o">}</span>
+    <span class="c1">//initial array</span>
+    <span class="kt">int</span><span class="o">[][]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">m</span><span class="o">][</span><span class="n">n</span><span class="o">];</span>
+    <span class="c1">//initial condition</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+       <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+     <span class="o">}</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+       <span class="n">dp</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+     <span class="o">}</span>
+     <span class="c1">//relationship</span>
+     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+             <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+         <span class="o">}</span>
+     <span class="o">}</span>
+     <span class="k">return</span> <span class="n">dp</span><span class="o">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+ <span class="o">}</span>
+</code></pre></div></div>
+<blockquote>
+  <p>This is O(n*m), we can improve to O(min(n,m)). Not here.</p>
+</blockquote>
+
+<h5 id="minimum-path-sum">Minimum Path Sum</h5>
+
+<p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+ Note: You can only move either down or right at any point in time. <a href="https://leetcode.com/problems/minimum-path-sum/">Source: Leecode 64</a></p>
+
+<p><img src="https://miro.medium.com/max/746/1*xFEcuAYzHR5J_r60z-os4A.png" alt="" /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> step1:
+ Defines the meaning of array-elements: In this problem, we can defines dp[i][j] means how many possible ways to position(i, j). Our goal is to find dp[i-1][j-1], since it start at dp[0][0].
+ stpe2
+ Find relationship, We can imaging for each position (a, b). There are two possible, one is from dp[a-1][b], and another is from dp[a][b-1]. So instead sum them up, we need to find the minimum first.
+ dp[i][j] = min(dp[i-1][j]，dp[i][j-1]) + arr[i][j];//arr[i][j] means the value in the current cell.
+ stpe3
+ Initial value: if i or j is 0. We do not need to count the relationship dp[i][j] = min(dp[i-1][j]，dp[i][j-1]) + arr[i][j];, since i-1 or j-1 will be negative.
+ Therefore:
+ dp[0][j] = arr[0][j] + dp[0][j-1]; // directly go first row
+ dp[i][0] = arr[i][0] + dp[i-1][0]; // directly go downward
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">uniquePaths</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+   	<span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+   	<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span>
+     <span class="k">if</span> <span class="o">(</span><span class="n">m</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+         <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+     <span class="o">}</span>
+     <span class="kt">int</span><span class="o">[][]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">m</span><span class="o">][</span><span class="n">n</span><span class="o">];</span> <span class="c1">//</span>
+   	<span class="c1">// initial array</span>
+   	<span class="n">dp</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">];</span>
+   	<span class="c1">// first row</span>
+   	<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+       <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">];</span>
+     <span class="o">}</span>
+   	<span class="c1">// first column</span>
+   	<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++){</span>
+       <span class="n">dp</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="n">j</span><span class="o">];</span>
+     <span class="o">}</span>
+ 		<span class="c1">// double for loop since it is a two dimensional matrix</span>
+     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+             <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">],</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">])</span> <span class="o">+</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">];</span>
+         <span class="o">}</span>
+     <span class="o">}</span>
+     <span class="k">return</span> <span class="n">dp</span><span class="o">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+ <span class="o">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>This is O(n*m), we can improve to O(min(n,m)). Not here.</p>
+</blockquote>
+
+<h5 id="edit-distance">Edit Distance</h5>
+
+<p>Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2.
+ You have the following 3 operations permitted on a word:</p>
+
+<p>Insert a character</p>
+
+<p>Delete a character</p>
+
+<p>Replace a character <a href="https://leetcode.com/problems/edit-distance/">Source: Leecode 72</a></p>
+
+<p><img src="https://miro.medium.com/max/608/1*3l5oNS3mEKTcEWtyX6xixw.jpeg" alt="" /></p>
+
+<p><strong>90% of string problems can be solved by dynamic programming, and 90% by two-dimensional arrays.</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> step1:
+ Defines the meaning of array-elements: In this problem, we can defines dp[i][j]. i is the length of word 1 and j is the length of the word 2. The minimum ways to transfer word 1 to word 2 will represent by dp[i][j].
+ stpe2
+ Equal char dp[i][j] = dp[i-1][j-1]
+ Insert a character dp[i][j] = dp[i][j-1] + 1;
+ Delete a character dp[i][j] = dp[i-1][j] + 1;
+ Replace a character dp[i][j] = dp[i-1][j-1] + 1;
+ There are 4 cases, see image below and we should take the minimum approach.
+ Therefore:
+ dp[i][j] = min(dp[i-1][j-1]，dp[i][j-1]，dp[[i-1][j]]) + 1;
+
+ stpe3
+ Initial value: if i or j is 0. We do not need to count the relationship.
+ When one string is 0 length, the only way to transform is take remove step and the numbers
+ of the minimum step is the length of the remaining string.
+</code></pre></div></div>
+
+<p><img src="https://miro.medium.com/max/427/1*55vXMSE72YYkkB0MuxBKwg.jpeg" alt="" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">public</span> <span class="kt">int</span> <span class="nf">minDistance</span><span class="o">(</span><span class="nc">String</span> <span class="n">word1</span><span class="o">,</span> <span class="nc">String</span> <span class="n">word2</span><span class="o">)</span> <span class="o">{</span>
+     <span class="kt">int</span> <span class="n">n1</span> <span class="o">=</span> <span class="n">word1</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+     <span class="kt">int</span> <span class="n">n2</span> <span class="o">=</span> <span class="n">word2</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+     <span class="kt">int</span><span class="o">[][]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">][</span><span class="n">n2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+     <span class="c1">// Initial value dp[0][0...n2]</span>
+     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n2</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
+     	<span class="n">dp</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+     <span class="c1">// Initial value dp[0...n1][0]</span>
+     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+ 		<span class="c1">// Calculate dp[n-1][n-2]</span>
+     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n2</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+             <span class="k">if</span> <span class="o">(</span><span class="n">word1</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="n">word2</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)){</span>
+             	<span class="n">p</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+             <span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+             <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">dp</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">],</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]),</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+             <span class="o">}</span>         
+         <span class="o">}</span>
+     <span class="o">}</span>
+     <span class="k">return</span> <span class="n">dp</span><span class="o">[</span><span class="n">n1</span><span class="o">][</span><span class="n">n2</span><span class="o">];</span>  
+ <span class="o">}</span>
+</code></pre></div></div>
+<blockquote>
+  <p>This is O(n*m), we can improve to O(min(n,m)). Not here.</p>
+</blockquote>
+:ET

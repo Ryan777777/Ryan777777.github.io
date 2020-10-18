@@ -2,7 +2,7 @@
 layout:     post
 title:      Dynamic Programming
 subtitle:   
-date:       2020-05-01
+date:       2019-05-01
 author:     Linz
 header-img: img/about_bg.jpeg
 catalog: true

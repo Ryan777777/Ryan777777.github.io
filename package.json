@@ -1,12 +1,12 @@
 {
-    "name": "by-blog",
-    "title": "BY Blog",
+    "name": "linz-blog",
+    "title": "Linz Blog",
     "author":
     "version": "1.7.0",
-    "homepage": "https://ryan777777.github.io/",
+    "homepage": "https://LIN251.github.io/",
     "repository": {
         "type": "git",
-        "url": "https://github.com/ryan777777/ryan777777.github.io"
+        "url": "https://github.com/LIN251/LIN251.github.io"
     },
     "bugs": ,
     "devDependencies": {
