@@ -20,6 +20,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>三周年纪念！</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
     <noscript>
@@ -142,7 +143,68 @@
     <!-- <script type="text/javascript">
         L2Dwidget.init();
     </script> -->
-
+    <script type="text/javascript">
+      //需要jquery插件
+      /* 鼠标特效 */
+      var a_idx = 0;
+      jQuery(document).ready(function($) {
+          $("body").click(function(e) {
+              var a = new Array("❤三周年快乐❤");
+              var $i = $("<span></span>").text(a[a_idx]);
+              a_idx = (a_idx + 1) % a.length;
+              var x = e.pageX,
+              y = e.pageY;
+              $i.css({
+                  "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+                  "top": y - 20,
+                  "left": x,
+                  "position": "absolute",
+                  "font-weight": "bold",
+                  "color": "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"
+              });
+              $("body").append($i);
+              $i.animate({
+                  "top": y - 180,
+                  "opacity": 0
+              },
+              1500,
+              function() {
+                  $i.remove();
+              });
+          });
+      });
+      </script>
+<script type="text/javascript">
+  window.onload = function () {
+    var minSize = 15; //最小字体
+    var maxSize = 30;//最大字体
+    var newOne = 500; //生成雪花间隔, 数值越小越快
+    var flakColor = "#1bd3ff"; //雪花颜色
+    var flak = $("<div></div>").css({position:"absolute","top":"0px"}).html("❉");//定义一个雪花
+    var dhight = $("body").height(); //定义视图高度
+    var dw =$(window).width()-80; //定义视图宽度
+    setInterval(function(){
+      var sizeflak = minSize+Math.random()*maxSize; //产生大小不等的雪花
+      var startLeft = Math.random()*dw; //雪花生成是随机的left值
+      var startOpacity = 0.7+Math.random()*0.3; //随机透明度
+      var endTop= dhight-100; //雪花停止top的位置
+      var endLeft= Math.random()*dw; //雪花停止的left位置
+      var durationfull = 5000+Math.random()*6000; //雪花飘落速度不同, 数值越大越慢
+      flak.clone().appendTo($("body")).css({
+        "left":startLeft ,
+        "opacity":startOpacity,
+        "font-size":sizeflak,
+        "color":flakColor
+      }).animate({
+        "top":endTop,
+        "left":endLeft,
+        "apacity":0.1
+      },durationfull,function(){
+      $(this).remove()
+      });
+    },newOne);
+  }
+</script>
     <script>
       /*https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json*/
       L2Dwidget.init({ "model": { jsonPath:
@@ -151,28 +213,6 @@
           "hOffset": 30, "vOffset": 700}, "mobile": { "show": true, "scale": 0.2 },
         "react": { "opacityDefault": 0.9, "opacityOnHover": 0.01 } });
     </script>
-<!-- live2d-widget-model-chitose
-live2d-widget-model-epsilon2_1
-live2d-widget-model-gf
-live2d-widget-model-haru/01 (use npm install --save live2d-widget-model-haru)
-live2d-widget-model-haru/02 (use npm install --save live2d-widget-model-haru)
-live2d-widget-model-haruto
-live2d-widget-model-hibiki
-live2d-widget-model-hijiki
-live2d-widget-model-izumi
-live2d-widget-model-koharu
-live2d-widget-model-miku
-live2d-widget-model-ni-j
-live2d-widget-model-nico
-live2d-widget-model-nietzsche
-live2d-widget-model-nipsilon
-live2d-widget-model-nito
-live2d-widget-model-shizuku
-live2d-widget-model-tororo
-live2d-widget-model-tsumiki
-live2d-widget-model-unitychan
-live2d-widget-model-wanko
-live2d-widget-model-z16 -->
 
   </body>
 </html>
