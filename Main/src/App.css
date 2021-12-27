@@ -12,10 +12,11 @@
   width: 90%;
   margin-left: 5%;
   margin-right: auto;
-  margin-top: 2%;
-  border: 5px solid black;
+  margin-top: 4%;
+
+  border: thick double #0c9dd6;
   padding: 0.5rem 1rem;
-  background: white;
+  background: rgb(255, 255, 255);
   font-weight: 900;
   color: black;
   letter-spacing: 0.5px;
@@ -82,16 +83,16 @@
   position: absolute;
   top: -100px;
   left: 160px;
-  color: blue;
+  color: rgb(0, 255, 34);
   font-size: 10px;
 }
 
 .date {
 
   right: 15px;
-  color: blue;
+  color: rgb(4, 0, 255);
 }
 .date-text {
   font-size: 24px;
-  color: deeppink;
+  color: rgb(255, 20, 118);
 }
