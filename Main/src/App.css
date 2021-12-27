@@ -6,6 +6,7 @@
   /* height: 840px; */
   /* margin-left: -800px;
   margin-right: -325px; */
+  position: fix;
   font-family: Microsoft YaHei;
   margin: auto;
   width: 90%;
@@ -65,12 +66,12 @@
 }
 
 .heart {
-  width: 40px;
-  height: 40px;
+  width: 30%;
+  height: auto;
   z-index: 999;
   position: absolute;
-  left: 40%;
-  top: 4vh;
+  left: 35%;
+  top: 3vh;
   cursor: pointer;
   animation: pound 0.25s infinite alternate;
 }
