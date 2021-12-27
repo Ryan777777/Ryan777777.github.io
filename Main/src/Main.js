@@ -82,7 +82,7 @@ class Main extends Component {
                 <div className="date">{date()}</div>
                 <div id="autotype">
                     <p></p>
-                    <h1 style={{ fontWeight: 500 }}>给小林同学的一封信！</h1>                
+                    <h1 style={{ fontWeight: 500 }}>Hello, 小林同学！</h1>                
 
                     <p>今天是我们三周年纪念日，从2019年1月1日到现在，时间过的真的好快，我们也一起经历和走过了很多很多事情。
                         有开心的，有难过的，互相分享着最快乐的时刻，中间也分分合合好多次，

@@ -1,15 +1,17 @@
 .App {
-  position: relative;
+
   /* left: 50%;
   top: 2%;
   width:100%; */
   /* height: 840px; */
   /* margin-left: -800px;
   margin-right: -325px; */
-  position: fix;
+  position:fixed;
   font-family: Microsoft YaHei;
-  margin: auto;
+
   width: 90%;
+  margin-left: 5%;
+  margin-right: auto;
   margin-top: 2%;
   border: 5px solid black;
   padding: 0.5rem 1rem;
