@@ -137,5 +137,21 @@
         }
     </script>
     <script type="text/javascript" src="./js/wmgwdw.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.min.js?_=1557308476616"></script>
+    <!-- <script type="text/javascript">
+        L2Dwidget.init();
+    </script> -->
+
+    <script>
+      /*https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json*/
+      L2Dwidget.init({ "model": { jsonPath:
+            "https://unpkg.com/live2d-widget-model-chitose@1.0.5/assets/chitose.model.json",
+          "scale": 1 }, "display": { "position": "right", "width": 110, "height": 150,
+          "hOffset": 0, "vOffset": -20 }, "mobile": { "show": true, "scale": 0.5 },
+        "react": { "opacityDefault": 0.8, "opacityOnHover": 0.1 } });
+    </script>
+
+
   </body>
 </html>
