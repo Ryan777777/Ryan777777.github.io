@@ -66,7 +66,7 @@ class Main extends Component {
             if (this.state.date.d !== undefined) {
                 const { d, hour, minute, second } = this.state.date
                 return (<p>我们已经一起走过了:<br></br>
-                <span className="date-text">{d}</span> 天 <span className="date-text">{hour}</span> 小时 <br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="date-text">{minute}</span> 
+                <span className="date-text">{d}</span> 天 <span className="date-text">{hour}</span> 小时 <br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="date-text">{minute}</span> 
                 分 <span className="date-text">{second}</span> 秒 </p>
                 )
             }
