@@ -1,6 +1,4 @@
-/**
- * Created by Rychou on 2018/4/19.
- */
+
 import React, { Component } from 'react'
 import $ from 'jquery'
 import url from './audio/gbqq.mp3' 
